@@ -35,3 +35,18 @@ test eql {
     try std.testing.expect(!eql(u8, "World", "Hello"));
     try std.testing.expect(!eql(u8, "World", "Hellos"));
 }
+
+fn contains(haystack: []const u8, needle: []const u8) bool {
+    outer: for (0..haystack.len) |i| {
+        for (0..needle.len) |j| {
+            if (haystack[i + j] != needle[j]) continue :outer;
+        }
+        return true;
+    }
+    return false;
+}
+
+test contains {
+    try std.testing.expect(contains("Hello World", "llo W"));
+    try std.testing.expect(!contains("Hello World", "Globe"));
+}

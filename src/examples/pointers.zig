@@ -23,7 +23,7 @@ fn printMemAddresses() void {
     std.debug.print("{*}\n{*}\n{*}\n", .{ &user, &user.id, &user.power });
 }
 
-test "User" {
+test User {
     var user = User{ .id = 1, .power = 100 };
     try std.testing.expectEqual(user.power, 100);
 

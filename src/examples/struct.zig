@@ -21,7 +21,7 @@ pub const User = struct {
     }
 };
 
-test "User struct" {
+test User {
     const user = User.init("Matt", 40);
 
     try std.testing.expectEqual(user.name, "Matt");

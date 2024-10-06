@@ -34,7 +34,7 @@ const Timestamp = union(TimestampType) {
     }
 };
 
-test "Timestamp" {
+test Timestamp {
     const ts = Timestamp{ .unix = 1728217801 };
     try std.testing.expectEqual(ts.seconds(), 1);
 }

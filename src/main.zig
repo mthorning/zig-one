@@ -2,10 +2,11 @@ const std = @import("std");
 
 const user = @import("examples/struct.zig").include;
 const loops = @import("examples/loop-and-switch.zig").include;
-const heap = @import("examples/heap.zig").include;
+const allocators = @import("examples/allocators.zig").include;
 const stringCompare = @import("examples/string-compare.zig").include;
 const timestampUnion = @import("examples/tagged-unions.zig").include;
 const pointer = @import("examples/pointers.zig").include;
+const generics = @import("examples/generics.zig").include;
 
 // This is required so that tests in example files are
 // built and run
@@ -20,10 +21,11 @@ test {
 fn includeAllTests() void {
     user();
     loops();
-    heap();
+    allocators();
     stringCompare();
     timestampUnion();
     pointer();
+    generics();
 }
 
 pub fn main() !void {

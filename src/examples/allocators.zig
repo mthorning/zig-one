@@ -55,29 +55,6 @@ test toLowerCase {
     try std.testing.expectEqualSlices(u8, result_two, "aazz");
 }
 
-fn toUpperCase(allocator: Allocator, str: []const u8) ![]const u8 {
-    // Notice that memory is allocated here but will need to be freed
-    // by the caller
-    var result = try allocator.alloc(u8, str.len);
-
-    for (str, 0..) |c, i| {
-        result[i] = switch (c) {
-            'a'...'z' => c - 32,
-            else => c,
-        };
-    }
-    return result;
-}
-
-test toUpperCase {
-    const allocator = std.testing.allocator;
-
-    const result_one = try toUpperCase(allocator, "AaZz");
-    defer allocator.free(result_one);
-
-    try std.testing.expectEqualSlices(u8, result_one, "AAZZ");
-}
-
 const HeapUser = struct {
     power: i32,
     allocator: std.mem.Allocator,
@@ -93,7 +70,7 @@ const HeapUser = struct {
     }
 };
 
-test "HeapUser" {
+test HeapUser {
     const allocator = std.testing.allocator;
 
     const heap_user = try HeapUser.init(allocator, 100);
